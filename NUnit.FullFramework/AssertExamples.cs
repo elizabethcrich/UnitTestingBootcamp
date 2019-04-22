@@ -14,33 +14,6 @@ namespace NUnit.FullFramework
     [TestFixture]
     public class AssertExamples
     {
-        //[Test]
-        //public void playground()
-        //{
-        //  //  Assert.That(91, Is.EqualTo(100).Within(8).Percent);
-
-        //    DateTime jan1 = new DateTime(2017, 01, 01);
-
-        // //   Assert.That(jan1, Is.InRange(new DateTime(2018, 01, 01), new DateTime(2019, 12, 31)));
-        //    var objArr = new object[] { new object(), 42, "my string" };
-        //    var stringArr = new object[] { "foo", "bar", "baz", "bin", "" };
-        //    var intList = Enumerable.Range(0, 100);
-
-        //    // Constraint-style asserts:
-        //    Assert.That(stringArr, Is.All.TypeOf<string>());
-        //    Assert.That(intList, Is.All.GreaterThanOrEqualTo(0));
-        //    Assert.That(objArr, Is.All.Not.Null);
-
-        //    Assert.That(intList, Is.Unique);
-
-
-        //    Assert.That(intList, Is.EqualTo(Enumerable.Range(0, 100)));
-        //    Assert.That(intList, Is.Not.EqualTo(Enumerable.Range(1, 5)));
-
-        //    Assert.That(stringArr, Is.EquivalentTo(new string[] { "bar", "baz", "", "bin", "foo" }));
-        //    Assert.That(stringArr, Is.EquivalentTo(new string[] { "bar", "baz" }));
-
-        //}
 
         /// <summary>
         /// Assertions that test for equality using object.Equals() to compare the actual value
