@@ -4,9 +4,16 @@
     {
         public bool Validate(string zipcode)
         {
-            return int.TryParse(zipcode, out int zip) 
-                   && zip <= 99999 
-                   && zip > 0;
+            if (!int.TryParse(zipcode, out int zip))
+                return false;
+
+            if (zip > 99999)
+                return false;
+
+            if (zip <= 0)
+                return false;
+
+            return true;
         }
     }
 }
