@@ -78,7 +78,7 @@ namespace MSTest.FullFramework
         }
 
 
-        [TestMethod]
+        [DataTestMethod]
         [DataRow("-12345", false)]
         [DataRow("123456", false)]
         [DataRow("asdf", false)]
@@ -93,7 +93,7 @@ namespace MSTest.FullFramework
             Assert.AreEqual(expectedResult, actualResult);
         }
 
-        [TestMethod]
+        [DataTestMethod]
         [DataRow("2018/01/01 12:32:00")]
         [DataRow("2019/11/11 1:32:00")]
         public void TestCaseWithDateTime(string inputDateTimeString)

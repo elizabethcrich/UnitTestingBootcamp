@@ -46,7 +46,10 @@
     <Compile Include="GeneralSyntaxExamples\AssertExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\TestExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\SyntaxExamples.cs" />
-    <Compile Include="MockExamples.cs" />
+    <Compile Include="GeneralSyntaxExamples\MockExamples.cs" />
+    <Compile Include="Mocks %28Exercises%29\LunchNotifierTests.cs" />
+    <Compile Include="Orders %28Exercises%29\Builders\OrderBuilder.cs" />
+    <Compile Include="Orders %28Exercises%29\OrderServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

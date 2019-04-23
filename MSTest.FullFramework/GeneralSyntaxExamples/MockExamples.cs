@@ -8,7 +8,7 @@ namespace MSTest.FullFramework
 {
 
     [TestClass]
-    class MockExamples
+    public class MockExamples
     {
 
         [TestMethod]

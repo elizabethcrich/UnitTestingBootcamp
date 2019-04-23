@@ -11,7 +11,7 @@ namespace NUnit.FullFramework
 {
 
     [TestFixture]
-    public class ZipCodeValidatorTests2
+    public class TestExamples
     {
 
         [Test]
