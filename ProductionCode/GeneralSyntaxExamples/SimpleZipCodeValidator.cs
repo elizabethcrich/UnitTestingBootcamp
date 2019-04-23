@@ -1,6 +1,6 @@
 ﻿namespace ProductionCode
 {
-    public class SimpleZipCodeValidator : IZipCodeValidator
+    public class SimpleZipCodeValidator
     {
         public bool Validate(string zipcode)
         {

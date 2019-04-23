@@ -42,10 +42,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssertExamples.cs" />
-    <Compile Include="SyntaxExamples.cs" />
+    <Compile Include="GeneralSyntaxExamples\AssertExamples.cs" />
+    <Compile Include="GeneralSyntaxExamples\SyntaxExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestExamples.cs" />
+    <Compile Include="GeneralSyntaxExamples\TestExamples.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ProductionCode\ProductionCode.csproj">
