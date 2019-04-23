@@ -46,6 +46,7 @@
     <Compile Include="GeneralSyntaxExamples\AssertExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\TestExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\SyntaxExamples.cs" />
+    <Compile Include="MockExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

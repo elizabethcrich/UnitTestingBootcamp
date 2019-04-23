@@ -46,6 +46,7 @@
     <Compile Include="GeneralSyntaxExamples\AssertExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\SyntaxExamples.WithSharedData.cs" />
     <Compile Include="GeneralSyntaxExamples\SyntaxExamples.NoSharedData.cs" />
+    <Compile Include="MockExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GeneralSyntaxExamples\TestExamples.cs" />
   </ItemGroup>
@@ -56,6 +57,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Moq">
+      <Version>4.10.1</Version>
+    </PackageReference>
     <PackageReference Include="xunit">
       <Version>2.4.1</Version>
     </PackageReference>
