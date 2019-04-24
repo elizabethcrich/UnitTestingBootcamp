@@ -45,7 +45,8 @@ namespace ProductionCode.Orders
 
         public Payment PayInvoice(Order order, int invoiceId)
         {
-            var invoiceToPay = order.Invoices.First(inv => inv.InvoiceId == invoiceId);
+            //var invoiceToPay = order.Invoices.First(inv => inv.InvoiceId == invoiceId);
+            var invoiceToPay = order.Invoices.FirstOrDefault(inv => inv.InvoiceId == invoiceId);
 
             if (invoiceToPay == null)
             {

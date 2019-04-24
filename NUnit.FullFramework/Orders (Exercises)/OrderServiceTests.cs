@@ -12,33 +12,41 @@ namespace NUnit.FullFramework.Orders
     [TestFixture]
     public class OrderServiceTests
     {
+        private Order _order;
+
+        [SetUp]
+        public void PerTestSetup()
+        {
+            _order = new Order();
+            _order.OrderId = 123456;
+            _order.Amount = 100;
+            _order.ClientId = 200;
+            _order.ClientName = "Bob's FoodMart";
+            _order.BookedDate = new DateTime(2019, 01, 12);
+            _order.CreatedDate = new DateTime(2019, 01, 01);
+            _order.CurrencyIsoCode = "USD";
+            _order.Adjustments.Add(new Adjustment() { Amount = -20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
+        }
+
         [Test]
         public void TestValidOrder_ThrowsWhenAmountIsNegative()
         {
             //
             // Arrange
             //
-            var order = new Order();
-            order.OrderId = 123456;
-            order.Amount = -1;
-            order.ClientId = 200;
-            order.ClientName = "Bob's FoodMart";
-            order.BookedDate = new DateTime(2019, 01, 12);
-            order.CreatedDate = new DateTime(2019, 01, 01);
-            order.CurrencyIsoCode = "USD";
-            order.Adjustments.Add(new Adjustment(){Amount=-20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01)});
+            _order.Amount = -1;
 
             var orderService = new OrderService();
 
             //
             // Act
             //
-            var ex = Assert.Throws<Exception>(() => orderService.ValidateOrder(order));
+            var ex = Assert.Throws<Exception>(code: () => orderService.ValidateOrder(_order));
 
             //
             // Assert
             //
-            Assert.That(ex.Message, Is.EqualTo("Order amount cannot be negative"));
+            Assert.That(ex.Message, Is.EqualTo(expected: "Order amount cannot be negative"));
         }
 
         [Test]
@@ -47,22 +55,14 @@ namespace NUnit.FullFramework.Orders
             //
             // Arrange
             //
-            var order = new Order();
-            order.OrderId = 123456;
-            order.Amount = 100;
-            order.ClientId = 200;
-            order.ClientName = "Bob's FoodMart";
-            order.BookedDate = new DateTime(2019, 01, 12);
-            order.CreatedDate = new DateTime(2019, 01, 01);
-            order.CurrencyIsoCode = "USD";
-            order.Adjustments.Add(new Adjustment() { Amount = -120, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
+            _order.Adjustments.Add(new Adjustment() { Amount = -120, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
 
             var orderService = new OrderService();
 
             //
             // Act
             //
-            var ex = Assert.Throws<Exception>(() => orderService.ValidateOrder(order));
+            var ex = Assert.Throws<Exception>(() => orderService.ValidateOrder(_order));
 
             //
             // Assert
@@ -76,23 +76,14 @@ namespace NUnit.FullFramework.Orders
             //
             // Arrange
             //
-            var order = new Order();
-            order.OrderId = 123456;
-            order.Amount = 100;
-            order.ClientId = 200;
-            order.ClientName = "Bob's FoodMart";
-            order.BookedDate = new DateTime(2019, 01, 12);
-            order.CreatedDate = new DateTime(2019, 01, 01);
-            order.CurrencyIsoCode = "USD";
-            order.Adjustments.Add(new Adjustment() { Amount = -20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
-            order.IsDeleted = true;
+            _order.IsDeleted = true;
 
             var orderService = new OrderService();
 
             //
             // Act
             //
-            var ex = Assert.Throws<Exception>(() => orderService.ValidateOrder(order));
+            var ex = Assert.Throws<Exception>(() => orderService.ValidateOrder(_order));
 
             //
             // Assert
@@ -104,97 +95,97 @@ namespace NUnit.FullFramework.Orders
         #region Project 5
 
 
-        //[Test]
-        //public void TestOrder_AmountPaidIsZeroWhenZeroDollarPaymentsMade()
-        //{
-        //    //
-        //    // Arrange
-        //    //
-        //    var order = new Order();
-        //    order.OrderId = 123456;
-        //    order.Amount = 100;
-        //    order.ClientId = 200;
-        //    order.ClientName = "Bob's FoodMart";
-        //    order.BookedDate = new DateTime(2019, 01, 12);
-        //    order.CreatedDate = new DateTime(2019, 01, 01);
-        //    order.CurrencyIsoCode = "USD";
-        //    order.Adjustments.Add(new Adjustment() { Amount = -20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
-        //    order.Invoices.Add(new Invoice() {Amount = 0, OrderId = 123456, InvoiceId = 1, CreatedDate = DateTime.Now});
+        [Test]
+        public void TestOrder_AmountPaidIsZeroWhenZeroDollarPaymentsMade()
+        {
+            //
+            // Arrange
+            //
+            var order = new Order();
+            order.OrderId = 123456;
+            order.Amount = 100;
+            order.ClientId = 200;
+            order.ClientName = "Bob's FoodMart";
+            order.BookedDate = new DateTime(2019, 01, 12);
+            order.CreatedDate = new DateTime(2019, 01, 01);
+            order.CurrencyIsoCode = "USD";
+            order.Adjustments.Add(new Adjustment() { Amount = -20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
+            order.Invoices.Add(new Invoice() { Amount = 0, OrderId = 123456, InvoiceId = 1, CreatedDate = DateTime.Now });
 
-        //    var orderService = new OrderService();
+            var orderService = new OrderService();
 
-        //    //
-        //    // Act
-        //    //
-        //    var payment = orderService.PayInvoice(order, 1);
+            //
+            // Act
+            //
+            var payment = orderService.PayInvoice(order, 1);
 
-        //    //
-        //    // Assert
-        //    //
-        //    Assert.That(order.TotalPayments, Is.EqualTo(0));
-        //}
-
-
-        //[Test]
-        //public void TestPayInvoice_CreatesPaymentOfInvoiceAmount()
-        //{
-        //    //
-        //    // Arrange
-        //    //
-        //    var order = new Order();
-        //    order.OrderId = 123456;
-        //    order.Amount = 100;
-        //    order.ClientId = 200;
-        //    order.ClientName = "Bob's FoodMart";
-        //    order.BookedDate = new DateTime(2019, 01, 12);
-        //    order.CreatedDate = new DateTime(2019, 01, 01);
-        //    order.CurrencyIsoCode = "USD";
-        //    order.Adjustments.Add(new Adjustment() { Amount = -20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
-        //    order.Invoices.Add(new Invoice() { Amount = 10, OrderId = 123456, InvoiceId = 1, CreatedDate = DateTime.Now });
-
-        //    var orderService = new OrderService();
-
-        //    //
-        //    // Act
-        //    //
-        //    var payment = orderService.PayInvoice(order, 1);
-
-        //    //
-        //    // Assert
-        //    //
-        //    Assert.That(payment.Amount, Is.EqualTo(100));
-        //}
+            //
+            // Assert
+            //
+            Assert.That(order.TotalPayments, Is.EqualTo(0));
+        }
 
 
-        //[Test]
-        //public void TestPayInvoice_ThrowsExceptionWhenInvoiceNotFound()
-        //{
-        //    //
-        //    // Arrange
-        //    //
-        //    var order = new Order();
-        //    order.OrderId = 123456;
-        //    order.Amount = 100;
-        //    order.ClientId = 200;
-        //    order.ClientName = "Bob's FoodMart";
-        //    order.BookedDate = new DateTime(2019, 01, 12);
-        //    order.CreatedDate = new DateTime(2019, 01, 01);
-        //    order.CurrencyIsoCode = "USD";
-        //    order.Adjustments.Add(new Adjustment() { Amount = -20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
-            
-        //    var orderService = new OrderService();
+        [Test]
+        public void TestPayInvoice_CreatesPaymentOfInvoiceAmount()
+        {
+            //
+            // Arrange
+            //
+            var order = new Order();
+            order.OrderId = 123456;
+            order.Amount = 100;
+            order.ClientId = 200;
+            order.ClientName = "Bob's FoodMart";
+            order.BookedDate = new DateTime(2019, 01, 12);
+            order.CreatedDate = new DateTime(2019, 01, 01);
+            order.CurrencyIsoCode = "USD";
+            order.Adjustments.Add(new Adjustment() { Amount = -20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
+            order.Invoices.Add(new Invoice() { Amount = 10, OrderId = 123456, InvoiceId = 1, CreatedDate = DateTime.Now });
 
-        //    //
-        //    // Act
-        //    //
-        //    var ex = Assert.Throws<Exception>(() => orderService.PayInvoice(order, 1));
+            var orderService = new OrderService();
 
-        //    //
-        //    // Assert
-        //    //
-        //    Assert.That(ex.Message, Is.EqualTo("Invoice InvoiceId"));
+            //
+            // Act
+            //
+            var payment = orderService.PayInvoice(order, 1);
 
-        //}
+            //
+            // Assert
+            //
+            Assert.That(payment.Amount, Is.EqualTo(10));
+        }
+
+
+        [Test]
+        public void TestPayInvoice_ThrowsExceptionWhenInvoiceNotFound()
+        {
+            //
+            // Arrange
+            //
+            var order = new Order();
+            order.OrderId = 123456;
+            order.Amount = 100;
+            order.ClientId = 200;
+            order.ClientName = "Bob's FoodMart";
+            order.BookedDate = new DateTime(2019, 01, 12);
+            order.CreatedDate = new DateTime(2019, 01, 01);
+            order.CurrencyIsoCode = "USD";
+            order.Adjustments.Add(new Adjustment() { Amount = -20, OrderId = 123456, AdjustmentId = 1, CreatedDate = new DateTime(2019, 01, 01) });
+
+            var orderService = new OrderService();
+
+            //
+            // Act
+            //
+            var ex = Assert.Throws<Exception>(() => orderService.PayInvoice(order, 1));
+
+            //
+            // Assert
+            //
+            Assert.That(ex.Message, Is.EqualTo("Invalid InvoiceId"));
+
+        }
 
 
         #endregion Project 5
