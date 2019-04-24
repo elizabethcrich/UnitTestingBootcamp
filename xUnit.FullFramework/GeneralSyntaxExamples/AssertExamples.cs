@@ -162,8 +162,8 @@ namespace xUnit.FullFramework
             Assert.Contains("foo", stringArr);
             Assert.DoesNotContain("zoom", stringArr);
 
-            Assert.Subset(intList.ToHashSet(), Enumerable.Range(5, 20).ToHashSet());
-            Assert.Superset(Enumerable.Range(5, 20).ToHashSet(), intList.ToHashSet());
+            //Assert.Subset(intList.ToHashSet(), Enumerable.Range(5, 20).ToHashSet());
+            //Assert.Superset(Enumerable.Range(5, 20).ToHashSet(), intList.ToHashSet());
 
             Assert.Empty(new int[] { });
             Assert.NotEmpty(new int[] { 1, 2 });
