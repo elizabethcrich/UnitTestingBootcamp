@@ -14,6 +14,10 @@ namespace NUnit.FullFramework.Mocks
         [Test]
         public void Test_EmployeeInOfficeGetsNotified()
         {
+
+            //Use MockExamples.cs for reference
+
+
             //
             // Create mocks:
             //
@@ -24,13 +28,16 @@ namespace NUnit.FullFramework.Mocks
              * Configure mock so that employee is considered working today and gets notifications via email
              *
              */
-            
+            bobMock.Setup(x => x.IsWorkingOnDate(It.IsAny<DateTime>()))
+                .Returns(true);
 
             var employeeServiceMock = new Moq.Mock<IEmployeeService>();
             /*
              * Configure mock so to return employee from above
              *
              */
+            employeeServiceMock.Setup(x => x.GetEmployeesInNewYorkOffice())
+               .Returns(new[] { bobMock.Object });
 
             var notificationServiceMock = new Moq.Mock<INotificationService>();
             /*

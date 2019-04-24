@@ -285,7 +285,7 @@ namespace NUnit.FullFramework
             //
             var classUnderTest = new Moq.Mock<LunchNotifier_SeamAndExplicitInterface>(notificationServiceMock.Object, employeeServiceMock.Object, loggerMock.Object)
             { CallBase = true };
-            classUnderTest.As<IDateTimeOverridable>().Setup(x => x.GetDateTime())
+            classUnderTest.As<IDateTimeOverridable>().Setup(x => x.GetDateTime()) // .As --> tell Mock framework to use explicit interface
                           .Returns(DateTime.Parse(currentTime));
 
             //
