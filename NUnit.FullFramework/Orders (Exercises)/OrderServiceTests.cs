@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using NUnit.FullFramework.Orders.Builders;
 using ProductionCode.Orders;
 using ProductionCode.Orders.Models;
 
@@ -76,7 +77,12 @@ namespace NUnit.FullFramework.Orders
             //
             // Arrange
             //
-            _order.IsDeleted = true;
+            //_order.IsDeleted = true;
+
+            // Builder Pattern
+            var order = new OrderBuilder()
+                .AsDeleted()
+                .Build();
 
             var orderService = new OrderService();
 
@@ -101,6 +107,9 @@ namespace NUnit.FullFramework.Orders
             //
             // Arrange
             //
+
+            // TODO: Builder Pattern = WithInvoice
+
             var order = new Order();
             order.OrderId = 123456;
             order.Amount = 100;
