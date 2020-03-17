@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeneralSyntaxExamples\AssertExamples.cs" />
+    <Compile Include="GeneralSyntaxExamples\ShouldlyExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\TestExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\SyntaxExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\MockExamples.cs" />
@@ -73,6 +74,9 @@
       <Version>3.16.1</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Shouldly">
+      <Version>3.0.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
