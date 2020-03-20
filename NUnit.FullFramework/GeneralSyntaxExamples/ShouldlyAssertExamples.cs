@@ -7,7 +7,7 @@ using Shouldly;
 namespace NUnit.FullFramework
 {
     [TestFixture]
-    public class ShouldlyExamples
+    public class ShouldlyAssertExamples
     {
 
         /// <summary>

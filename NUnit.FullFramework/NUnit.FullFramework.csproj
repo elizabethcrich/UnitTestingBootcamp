@@ -44,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeneralSyntaxExamples\FluentAssertionExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\AssertExamples.cs" />
-    <Compile Include="GeneralSyntaxExamples\ShouldlyExamples.cs" />
+    <Compile Include="GeneralSyntaxExamples\ShouldlyAssertExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\TestExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\SyntaxExamples.cs" />
     <Compile Include="GeneralSyntaxExamples\MockExamples.cs" />
@@ -61,6 +62,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="FluentAssertions">
+      <Version>5.10.2</Version>
+    </PackageReference>
     <PackageReference Include="Moq">
       <Version>4.13.1</Version>
     </PackageReference>
