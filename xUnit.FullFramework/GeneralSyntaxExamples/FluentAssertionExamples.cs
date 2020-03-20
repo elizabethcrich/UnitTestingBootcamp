@@ -4,11 +4,11 @@ using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using FluentAssertions.Extensions;
-using NUnit.Framework;
+using Xunit;
 
-namespace NUnit.FullFramework
+
+namespace xUnit.FullFramework
 {
-    [TestFixture]
     public class FluentAssertionExamples
     {
 
@@ -22,7 +22,7 @@ namespace NUnit.FullFramework
         /// Assertions that test for equality using object.Equals() to compare the actual value
         /// to the expected value
         /// </summary>
-        [Test]
+        [Fact]
         public void EqualityChecks()
         {
           
@@ -51,7 +51,7 @@ namespace NUnit.FullFramework
         /// Assertions that test for equality using object.ReferenceEquals() to determine if both values point to
         /// the exact same object.
         /// </summary>
-        [Test]
+        [Fact]
         public void SameObjectChecks()
         {
             var valueToTest = new {Foo = "bar", Baz = true};
@@ -66,7 +66,7 @@ namespace NUnit.FullFramework
         /// <summary>
         /// Assertions that test for null values
         /// </summary>
-        [Test]
+        [Fact]
         public void NullChecks()
         {
             var valueToTest = new { Foo = (object) null, Baz = new object() };
@@ -78,7 +78,7 @@ namespace NUnit.FullFramework
         /// <summary>
         /// Assertions that compare the value to a set of constraints
         /// </summary>
-        [Test]
+        [Fact]
         public void ComparisonChecks()
         {
             int bigNumber = int.MaxValue;
@@ -119,7 +119,7 @@ namespace NUnit.FullFramework
         /// <summary>
         /// String-specific checks
         /// </summary>
-        [Test]
+        [Fact]
         public void StringChecks()
         {
             var valueToTest = "Foo Bar Baz Bin";
@@ -146,7 +146,7 @@ namespace NUnit.FullFramework
         /// <summary>
         /// Tests related to object types and inheritance
         /// </summary>
-        [Test]
+        [Fact]
         public void TypeChecks()
         {
             IList<string> stringList = new List<string>();
@@ -171,7 +171,7 @@ namespace NUnit.FullFramework
         /// <summary>
         /// Checks specific to collections
         /// </summary>
-        [Test]
+        [Fact]
         public void CollectionChecks()
         {
             var objArr = new object[] {new object(), 42, "my string"};
@@ -241,7 +241,7 @@ namespace NUnit.FullFramework
         /// <summary>
         /// Exception-specific checks
         /// </summary>
-        [Test]
+        [Fact]
         public void ExceptionChecks()
         {
 
@@ -269,7 +269,7 @@ namespace NUnit.FullFramework
         /// <summary>
         /// Syntax for executing multiple assertions in the same test (ie: all asserts are run)
         /// </summary>
-        [Test]
+        [Fact]
         public void MultipleCriteriaChecks()
         {
             var aNumber = 5.0;

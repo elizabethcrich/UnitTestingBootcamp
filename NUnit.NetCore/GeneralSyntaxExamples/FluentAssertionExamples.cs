@@ -6,7 +6,8 @@ using FluentAssertions.Execution;
 using FluentAssertions.Extensions;
 using NUnit.Framework;
 
-namespace NUnit.FullFramework
+
+namespace NUnit.NetCore
 {
     [TestFixture]
     public class FluentAssertionExamples
