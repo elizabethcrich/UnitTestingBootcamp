@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
-using ProductionCode;
 using Shouldly;
 
 namespace NUnit.FullFramework
@@ -33,8 +27,6 @@ namespace NUnit.FullFramework
             var expectedValue_obj_notequal = new { Foo = "zoom", Baz = false }; ;
 
 
-
-            // Constraint-style asserts:
             valueToTest_bool.ShouldBe(true);
             valueToTest_string.ShouldBe("some result");
             valueToTest_datetime.ShouldBe(new DateTime(2019, 01, 01));
@@ -60,10 +52,8 @@ namespace NUnit.FullFramework
             var expectedValue_notsame = new { Foo = "bar", Baz = true }; ;
 
 
-            // Constraint-style asserts:
             valueToTest.ShouldBeSameAs(expectedValue_same);
             valueToTest.ShouldNotBeSameAs(expectedValue_notsame);
-
 
         }
 
@@ -75,8 +65,6 @@ namespace NUnit.FullFramework
         {
             var valueToTest = new { Foo = (object) null, Baz = new object() };
             
-            
-            // Constraint-style asserts:
             valueToTest.Foo.ShouldBeNull();
             valueToTest.Baz.ShouldNotBeNull();
             
@@ -91,16 +79,12 @@ namespace NUnit.FullFramework
             int bigNumber = int.MaxValue;
             int smallNumber = int.MinValue;
             int zero = 0;
-
-            double notANumber = double.NaN; // NaN == 0D / 0D
-            double infinity = double.PositiveInfinity;
-            
+ 
             bool trueValue = true;
             bool falseValue = false;
 
             DateTime jan1 = new DateTime(2019, 01, 01);
 
-            // Constraint-style asserts:
             bigNumber.ShouldBeGreaterThan(smallNumber);
             bigNumber.ShouldBeGreaterThanOrEqualTo(smallNumber);
 
@@ -116,7 +100,7 @@ namespace NUnit.FullFramework
             zero.ShouldBeInRange(-100, 5);
             zero.ShouldNotBeInRange(1, 10);
             jan1.ShouldBeInRange(new DateTime(2018, 01, 01), new DateTime(2019, 12, 31));
-           
+
             zero.ShouldBeOneOf(42, 0, 100);
 
             2.333333d.ShouldBe(2.3, 0.5);
@@ -124,7 +108,7 @@ namespace NUnit.FullFramework
             
         }
 
-       
+
 
         /// <summary>
         /// String-specific checks
@@ -133,8 +117,7 @@ namespace NUnit.FullFramework
         public void StringChecks()
         {
             var valueToTest = "Foo Bar Baz Bin";
-          
-            // Constraint-style asserts:
+
             "".ShouldBeEmpty();
             valueToTest.ShouldNotBeEmpty();
             valueToTest.ShouldContain("Bar");
@@ -184,7 +167,6 @@ namespace NUnit.FullFramework
             var stringArr = new object[] {"foo", "bar", "baz", "bin", ""};
             var intList = Enumerable.Range(0, 100);
 
-            // Constraint-style asserts:
             stringArr.ShouldAllBe(x => x is string);
             intList.ShouldAllBe(x => x >= 0);
             objArr.ShouldAllBe(x => x != null);
@@ -196,12 +178,12 @@ namespace NUnit.FullFramework
             intList.ShouldNotBe(Enumerable.Range(1, 5));
 
             stringArr.ShouldBe(new string[] { "bar", "baz", "", "bin", "foo" }, true);
-            
+
             stringArr.ShouldContain("foo");
             stringArr.ShouldNotContain("zoom");
-            
+
             Enumerable.Range(5, 20).ShouldBeSubsetOf(intList);
-            
+
             new int[] { }.ShouldBeEmpty();
             intList.ShouldNotBeEmpty();
 
@@ -214,9 +196,9 @@ namespace NUnit.FullFramework
             sarray.ShouldBeInOrder(SortDirection.Ascending, new StringLengthComparer());
 
             intList.Count().ShouldBe(100);
-           
+
             intList.ShouldAllBe(x => x >= 0);
-            
+
 
         }
 
@@ -259,7 +241,7 @@ namespace NUnit.FullFramework
             var ex = ((Action)(() => throw new Exception("message")))
                 .ShouldThrow<Exception>();
             ex.Message.ShouldBe("message");
-            
+
         }
 
       

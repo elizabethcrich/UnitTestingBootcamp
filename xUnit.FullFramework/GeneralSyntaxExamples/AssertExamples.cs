@@ -25,7 +25,7 @@ namespace xUnit.FullFramework
 
             var valueToTest_obj = new { Foo = "bar", Baz = true };
             var expectedValue_obj_equal = new { Foo = "bar", Baz = true };
-            var expectedValue_obj_notequal = new { Foo = "zoom", Baz = false }; ;
+            var expectedValue_obj_notequal = new { Foo = "zoom", Baz = false };
 
             
             // (important: expected value comes first!)
