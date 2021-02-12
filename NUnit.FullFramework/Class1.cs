@@ -16,7 +16,7 @@ namespace NUnit.FullFramework
             var expectedValue = new List<int> { 1, 3, 5, 7 };
             var actualValue = new int[] { 9, 7, 3, 1 };
 
-            Assert.That(actualValue, Is.EquivalentTo(expectedValue));
+            Assert.That(actualValue, Is.Not.EquivalentTo(expectedValue));
         }
 
         [Test]
